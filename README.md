@@ -1,4 +1,4 @@
-# README #
+# README 
 
 A general obect detection class based on yolo darknet model.
 
