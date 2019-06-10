@@ -1,1 +1,1 @@
-from detect_yolo import ObjectDetectorYolo
+from .detect_yolo import ObjectDetectorYolo
