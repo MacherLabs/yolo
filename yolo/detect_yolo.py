@@ -2,7 +2,7 @@
 import os
 
 #WORK_DIR = os.path.dirname(os.path.abspath(__file__))
-WORKDIR = '/LFS'
+WORK_DIR = '/LFS'
 MODEL_DIR = 'weights'
 CFG_DIR = 'cfg'
 
