@@ -35,7 +35,15 @@ def freeze_graph(tfnet,mode='trt'):
         
     print('creating trt graph..')
     #Convert to tensor RT graph
-    trt_graph_def=trt.create_inference_graph(input_graph_def= output_graph_def,max_batch_size=1,max_workspace_size_bytes=1<<25,precision_mode='FP16',minimum_segment_size=50,outputs=['output'])
+    trt_graph_def=trt.create_inference_graph(input_graph_def= output_graph_def,
+                                             max_batch_size=1,
+                                             max_workspace_size_bytes=1<<25,
+                                             precision_mode='FP16',
+                                             minimum_segment_size=5,
+                                             maximum_cached_engines=5,
+                                             outputs=['output'])
+    nodes = [node.name for node in trt_graph_def.node if 'TRTEngineOp' == node.op]
+    print('{} Tensort optimization nodes created.'.format(len(nodes)) )
     print('converted to trt graph..')
     
     #Save tensorrt graph
