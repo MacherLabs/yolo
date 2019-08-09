@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import os
-
+import sys
+sys.path.append('../')
+import freeze_util as util
 #WORK_DIR = os.path.dirname(os.path.abspath(__file__))
 WORK_DIR = '/LFS/yolo'
 MODEL_DIR = 'weights'
@@ -24,7 +26,7 @@ class ObjectDetectorYolo(object):
                     'threshold': threshold,
                     'gpu': gpu
                     }
-        self.tfnet = TFNet(options)
+        self.tfnet = util.freeze_graph(TFNet(options))
 
     # Run detector on given frame and return list of objects
     def run(self, imgcv):
