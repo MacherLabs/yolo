@@ -6,10 +6,12 @@ from os import path
 #Converts darknet model to Tensor RT graph
 def freeze_graph(tfnet,mode='trt',build = False):
     # Check if we have frozen graph already
-    trt_graph_def = tf.GraphDef()
+    
     if path.exists('trt_frozen_yolo.pb') == True and build == False:
         with tf.gfile.FastGFile('trt_frozen_yolo.pb','rb') as f:
+            trt_graph_def = tf.GraphDef()
             trt_graph_def.ParseFromString(f.read())
+            print('trt graph exists..loaded trt graph..')
     else:
         #Output name for frozen graph
         output_node_names=["output"]
